@@ -12,4 +12,4 @@
 	url = https://github.com/docopt/docopt.cpp
 [submodule "abc-ufo"]
 	path = abc
-	url = https://bitbucket.org/arieg/abc-ufo
+	url = https://github.com/meelgroup/abc-fork-ufo.git
