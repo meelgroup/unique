@@ -3,6 +3,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+find_package(Boost 1.46.1 REQUIRED)
+if (Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+endif()
+
 find_package(Abc REQUIRED)
 if (ABC_FOUND)
   include_directories(${ABC_INCLUDE_DIR})
@@ -37,6 +42,13 @@ add_library(dqdimacsparser DQDIMACSParser.h DQDIMACSParser.cc)
 add_library(dqcirparser DQCIRParser.h DQCIRParser.cc)
 add_library(comparator VariableComparator.h VariableComparator.cc)
 
+target_link_libraries(extractor ${INTERPOLATING_SOLVER_LIBRARY} ${ABC_LIBRARY})
+target_link_libraries(qbfparser comparator extractor)
+target_link_libraries(qcirparser qbfparser)
+target_link_libraries(qdimacsparser qbfparser)
+target_link_libraries(dqdimacsparser qdimacsparser)
+target_link_libraries(dqcirparser qcirparser dqdimacsparser qdimacsparser)
+
 add_executable(unique determined.cc)
 
 if (BUILD_SHARED_LIBS)
@@ -44,4 +56,3 @@ if (BUILD_SHARED_LIBS)
 else()
   target_link_libraries(unique docopt_s dqcirparser qcirparser qdimacsparser dqdimacsparser qbfparser extractor ${INTERPOLATING_SOLVER_LIBRARY} comparator -static)
 endif()
-
