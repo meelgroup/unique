@@ -3,10 +3,10 @@
 	url = https://github.com/perebor/minisat
 [submodule "avy"]
 	path = avy
-	url = git@github.com:meelgroup/avy.git
+	url = https://github.com/meelgroup/avy
 [submodule "interpolatingsolver"]
 	path = interpolatingsolver
-	url = git@github.com:kuldeepmeel/interpolatingsolver.git
+	url = https://github.com/kuldeepmeel/interpolatingsolver
 [submodule "docopt.cpp"]
 	path = docopt.cpp
 	url = https://github.com/docopt/docopt.cpp
